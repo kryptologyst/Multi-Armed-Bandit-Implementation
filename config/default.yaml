@@ -1,0 +1,51 @@
+# Multi-Armed Bandit Configuration
+
+# Environment settings
+environment:
+  num_arms: 10
+  reward_distribution: "gaussian"  # gaussian, bernoulli, uniform
+  reward_params:
+    stds: 1.0  # For gaussian distribution
+  seed: 42
+
+# Training settings
+training:
+  num_steps: 2000
+  num_runs: 5
+  log_dir: "logs"
+
+# Agent configurations
+agents:
+  epsilon_greedy:
+    epsilon: 0.1
+  
+  decaying_epsilon_greedy:
+    initial_epsilon: 1.0
+    decay_rate: 0.99
+    min_epsilon: 0.01
+  
+  ucb:
+    confidence_level: 2.0
+  
+  thompson_sampling:
+    prior_alpha: 1.0
+    prior_beta: 1.0
+  
+  softmax:
+    temperature: 1.0
+  
+  gradient:
+    learning_rate: 0.1
+
+# Visualization settings
+visualization:
+  save_plots: true
+  plot_format: "png"
+  dpi: 300
+  style: "seaborn-v0_8"
+
+# Logging settings
+logging:
+  level: "INFO"
+  file: "logs/training.log"
+  console: true
